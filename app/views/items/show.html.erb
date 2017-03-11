@@ -1,2 +1,7 @@
 <h1><%= @item.title %></h1>
 <h2>$ <%= @item.price %></h2>
+<h2>In stock: <%= @item.inventory %></h2>
+
+<% if signed_in? %>
+  <%= button_to 'Add to Cart', line_items_path(item_id: @item) %>
+<% end %>

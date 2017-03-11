@@ -1,7 +1,11 @@
 <h1><%= @category.title %></h1>
 
 <ul>
-<% @category.items.each do |item| %>
-    <li><%= link_to item.title, item_path(item) %></li>
+<% @category.items.available_items.each do |item| %>
+    <li><%= item.title %> | <%= number_to_currency(item.price/100) %> |
+      <% if signed_in? %>
+        <%= button_to 'Add to Cart', line_items_path(item_id: item) %>
+      <% end %>
+    </li>
 <% end %>
 </ul>
